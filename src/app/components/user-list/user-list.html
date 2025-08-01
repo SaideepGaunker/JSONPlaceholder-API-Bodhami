@@ -1,0 +1,52 @@
+<div class="user-list-container">
+  <h2>Users from JSONPlaceholder API</h2>
+
+  <div *ngIf="loading" class="loading">
+    Loading users...
+  </div>
+
+  <div *ngIf="error" class="error">
+    {{ error }}
+    <button type="button" (click)="loadUsers()">Retry</button>
+  </div>
+
+  <div *ngIf="!loading && !error" class="users-grid">
+    <div *ngFor="let user of users" class="user-card">
+      <div class="user-header">
+        <h3>{{ user.name }}</h3>
+        <span class="username">@{{ user.username }}</span>
+      </div>
+
+      <div class="user-details">
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Phone:</strong> {{ user.phone }}</p>
+        <p><strong>Website:</strong> {{ user.website }}</p>
+
+        <div class="address">
+          <strong>Address:</strong>
+          <p>{{ user.address.street }}, {{ user.address.suite }}</p>
+          <p>{{ user.address.city }}, {{ user.address.zipcode }}</p>
+        </div>
+
+        <div class="company">
+          <strong>Company:</strong>
+          <p>{{ user.company.name }}</p>
+          <p class="catchphrase">{{ user.company.catchPhrase }}</p>
+        </div>
+      </div>
+
+      <div class="user-actions">
+        <button type="button" class="btn-edit" (click)="editUser(user)">Edit</button>
+        <button type="button" class="btn-delete" (click)="deleteUser(user.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit User Modal -->
+  <app-edit-user 
+    [user]="selectedUser"
+    [isVisible]="showEditModal"
+    (onClose)="onEditClose()"
+    (onSave)="handleUserSave($event)">
+  </app-edit-user>
+</div>

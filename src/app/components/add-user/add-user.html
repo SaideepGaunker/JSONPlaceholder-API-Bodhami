@@ -1,0 +1,108 @@
+<div class="add-user-container">
+  <div class="form-header">
+    <h2>Add New User</h2>
+    <p>Create a new user using the JSONPlaceholder POST API</p>
+  </div>
+
+  <!-- Success/Error Messages -->
+  <div class="message success" *ngIf="successMessage">
+    {{ successMessage }}
+  </div>
+  <div class="message error" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <form class="add-user-form" (ngSubmit)="onSubmit()" #userForm="ngForm">
+    <!-- Personal Information Section -->
+    <div class="form-section">
+      <h3>Personal Information</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" [(ngModel)]="newUser.name" name="name" required placeholder="Enter full name">
+        </div>
+        <div class="form-group">
+          <label for="username">Username *</label>
+          <input type="text" id="username" [(ngModel)]="newUser.username" name="username" required
+            placeholder="Enter username">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" [(ngModel)]="newUser.email" name="email" required
+            placeholder="Enter email address">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="text" id="phone" [(ngModel)]="newUser.phone" name="phone" placeholder="Enter phone number">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="website">Website</label>
+        <input type="text" id="website" [(ngModel)]="newUser.website" name="website" placeholder="Enter website URL">
+      </div>
+    </div>
+
+    <!-- Address Section -->
+    <div class="form-section">
+      <h3>Address Information</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="street">Street</label>
+          <input type="text" id="street" [(ngModel)]="newUser.address.street" name="street"
+            placeholder="Enter street address">
+        </div>
+        <div class="form-group">
+          <label for="suite">Suite</label>
+          <input type="text" id="suite" [(ngModel)]="newUser.address.suite" name="suite"
+            placeholder="Enter suite/apt number">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" [(ngModel)]="newUser.address.city" name="city" placeholder="Enter city">
+        </div>
+        <div class="form-group">
+          <label for="zipcode">Zipcode</label>
+          <input type="text" id="zipcode" [(ngModel)]="newUser.address.zipcode" name="zipcode"
+            placeholder="Enter zipcode">
+        </div>
+      </div>
+    </div>
+
+    <!-- Company Section -->
+    <div class="form-section">
+      <h3>Company Information</h3>
+      <div class="form-group">
+        <label for="companyName">Company Name</label>
+        <input type="text" id="companyName" [(ngModel)]="newUser.company.name" name="companyName"
+          placeholder="Enter company name">
+      </div>
+
+      <div class="form-group">
+        <label for="catchPhrase">Catch Phrase</label>
+        <input type="text" id="catchPhrase" [(ngModel)]="newUser.company.catchPhrase" name="catchPhrase"
+          placeholder="Enter company catch phrase">
+      </div>
+
+      <div class="form-group">
+        <label for="bs">Business</label>
+        <input type="text" id="bs" [(ngModel)]="newUser.company.bs" name="bs" placeholder="Enter business description">
+      </div>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="form-actions">
+      <button type="button" class="btn-reset" (click)="resetForm()">Reset Form</button>
+      <button type="submit" class="btn-submit" [disabled]="!userForm.form.valid || isSubmitting">
+        <span *ngIf="isSubmitting">Creating...</span>
+        <span *ngIf="!isSubmitting">Create User</span>
+      </button>
+    </div>
+  </form>
+</div>

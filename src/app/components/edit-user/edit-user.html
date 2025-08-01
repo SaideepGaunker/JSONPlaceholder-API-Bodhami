@@ -1,0 +1,139 @@
+<div class="modal-overlay" *ngIf="isVisible" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Edit User</h2>
+      <button class="close-btn" (click)="closeModal()">&times;</button>
+    </div>
+    
+    <form class="edit-form" (ngSubmit)="saveUser()">
+      <div class="form-section">
+        <h3>Personal Information</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input 
+              type="text" 
+              id="name" 
+              [(ngModel)]="editedUser.name" 
+              name="name" 
+              required>
+          </div>
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input 
+              type="text" 
+              id="username" 
+              [(ngModel)]="editedUser.username" 
+              name="username" 
+              required>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input 
+              type="email" 
+              id="email" 
+              [(ngModel)]="editedUser.email" 
+              name="email" 
+              required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input 
+              type="text" 
+              id="phone" 
+              [(ngModel)]="editedUser.phone" 
+              name="phone">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="website">Website:</label>
+          <input 
+            type="text" 
+            id="website" 
+            [(ngModel)]="editedUser.website" 
+            name="website">
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3>Address</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="street">Street:</label>
+            <input 
+              type="text" 
+              id="street" 
+              [(ngModel)]="editedUser.address.street" 
+              name="street">
+          </div>
+          <div class="form-group">
+            <label for="suite">Suite:</label>
+            <input 
+              type="text" 
+              id="suite" 
+              [(ngModel)]="editedUser.address.suite" 
+              name="suite">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">City:</label>
+            <input 
+              type="text" 
+              id="city" 
+              [(ngModel)]="editedUser.address.city" 
+              name="city">
+          </div>
+          <div class="form-group">
+            <label for="zipcode">Zipcode:</label>
+            <input 
+              type="text" 
+              id="zipcode" 
+              [(ngModel)]="editedUser.address.zipcode" 
+              name="zipcode">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3>Company</h3>
+        <div class="form-group">
+          <label for="companyName">Company Name:</label>
+          <input 
+            type="text" 
+            id="companyName" 
+            [(ngModel)]="editedUser.company.name" 
+            name="companyName">
+        </div>
+        
+        <div class="form-group">
+          <label for="catchPhrase">Catch Phrase:</label>
+          <input 
+            type="text" 
+            id="catchPhrase" 
+            [(ngModel)]="editedUser.company.catchPhrase" 
+            name="catchPhrase">
+        </div>
+        
+        <div class="form-group">
+          <label for="bs">Business:</label>
+          <input 
+            type="text" 
+            id="bs" 
+            [(ngModel)]="editedUser.company.bs" 
+            name="bs">
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-cancel" (click)="closeModal()">Cancel</button>
+        <button type="submit" class="btn-save">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
